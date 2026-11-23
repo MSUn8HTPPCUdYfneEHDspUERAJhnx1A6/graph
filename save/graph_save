@@ -1,0 +1,20 @@
+### 存图
+#### 直接存图
+```
+void add(vector<pair<int,int> >ve,int x,int y){
+    ve.push_back({x,y});
+}
+```
+#### 邻接矩阵
+```
+void add(int tmp[5005][5005],int x,int y){
+    tmp[x][y]=1;
+} 
+```
+#### 邻接表
+```
+void add(vector<int>ve[100005],int x,int y){
+    ve[x].push_back(y);
+    //ve[y].push_back(x);
+}
+```
