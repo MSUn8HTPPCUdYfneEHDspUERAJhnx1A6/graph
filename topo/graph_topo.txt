@@ -1,0 +1,25 @@
+### 拓扑(排)序
+问题：在一个 DAG（有向无环图） 中，我们将图中的顶点以线性方式进行排序，使得对于任何的顶点u到v的有向边(u,v), 都可以有u在v的前面．  
+维护一个队列，记录入度  
+1.计算入度  
+2.入度为零的点放入队列  
+3.取队头，将它连向的点度数减一(删掉队头连向的边)，若度数减为0，则放进队列  
+4.重复3直到队列为空  
+5.取出队头的顺序就是拓扑序  
+code:
+```
+vector<int> toposort(int n,vector<int>a[100005],int deg[100005]){
+    queue<int>q;vector<int>ans;
+    for(int i=0;i<=n-1;i++)if(deg[i]==0)q.push(i);
+    while(q.size()){
+        int x=q.front();q.pop();
+        ans.push_back(x);
+        int len=int(a[x].size())-1;
+        for(int i=0;i<=len;i++){
+            deg[a[x][i]]--;
+            if(deg[a[x][i]]==0)q.push(a[x][i]);
+        }
+    }
+    return ans;
+}
+```
